@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Estate Return Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-center mb-2">Real Estate Return Calculator</h1>
+    <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Compare property investment returns with alternative options and make informed financial decisions for your future</p>
+    
+    <!-- Main Input Section -->
+    <div class="property-details-container mb-6">
+      <div class="flex items-center mb-4">
+        <div class="icon-container bg-blue-100 text-blue-600 p-3 rounded-full mr-3">
+          <i class="fas fa-home fa-lg"></i>
+        </div>
+        <h2 class="text-lg font-semibold text-gray-700">Property Details</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-gray-700 mb-1 text-sm" for="main-initial-value">Initial Property Value (₹)</label>
+          <input type="number" id="main-initial-value" class="w-full px-3 py-1.5 border rounded-md focus-input" placeholder="e.g., 5000000" value="5000000">
+        </div>
+        <div>
+          <label class="block text-gray-700 mb-1 text-sm" for="main-current-value">Current Property Value (₹)</label>
+          <input type="number" id="main-current-value" class="w-full px-3 py-1.5 border rounded-md focus-input" placeholder="e.g., 7500000" value="7500000">
+        </div>
+        <div>
+          <label class="block text-gray-700 mb-1 text-sm" for="main-years">Ownership Period (Years)</label>
+          <input type="number" id="main-years" class="w-full px-3 py-1.5 border rounded-md focus-input" placeholder="e.g., 5" value="5">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Unified Results Section -->
+    <div class="results-container mb-6">
+      <!-- Hidden inputs for rates that will be used by JavaScript -->
+      <input type="hidden" id="fd-rate" value="7">
+      <input type="hidden" id="equity-rate" value="12">
+      
+      <!-- Hidden inputs for rental calculations -->
+      <input type="hidden" id="monthly-rental-income" value="25000">
+      <input type="hidden" id="rental-income-growth" value="5">
+      <input type="hidden" id="annual-expenses" value="50000">
+      
+      <!-- Hidden inputs for rent vs buy calculations -->
+      <input type="hidden" id="monthly-rent" value="25000">
+      <input type="hidden" id="rent-appreciation" value="5">
+      
+      <!-- Combined Results Section -->
+      <div id="combined-results" class="results-section">
+        <div class="results-data"></div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html> 
