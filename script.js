@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Function to update all calculations
   function updateAllCalculations() {
-    const initialValue = parseFloat(document.getElementById('main-initial-value').value);
-    const currentValue = parseFloat(document.getElementById('main-current-value').value);
+    const initialValue = parseFloat(document.getElementById('main-initial-value').value) * 100000;
+    const currentValue = parseFloat(document.getElementById('main-current-value').value) * 100000;
     const years = parseFloat(document.getElementById('main-years').value);
     const fdRate = parseFloat(document.getElementById('fd-rate').value) || 7;
     const equityRate = parseFloat(document.getElementById('equity-rate').value) || 12;
@@ -108,8 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
         break;
         
       case 'rent-scenario':
-        document.getElementById('rent-initial-value').value = initialValue;
-        document.getElementById('rent-current-value').value = currentValue;
+        document.getElementById('rent-initial-value').value = initialValue / 100000;
+        document.getElementById('rent-current-value').value = currentValue / 100000;
         document.getElementById('rent-years').value = years;
         document.getElementById('monthly-rent').value = initialValue * 0.005; // 0.5% of property value monthly
         break;
@@ -745,6 +745,15 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   function formatNumber(num) {
-    return num.toLocaleString('en-IN');
+    if (num >= 10000000) {
+      // Convert to crores (≥ 1 crore)
+      return (num / 10000000).toFixed(2) + ' Cr';
+    } else if (num >= 100000) {
+      // Convert to lakhs (≥ 1 lakh) without decimals
+      return Math.round(num / 100000) + ' L';
+    } else {
+      // Regular formatting for smaller numbers
+      return num.toLocaleString('en-IN');
+    }
   }
 }); 
